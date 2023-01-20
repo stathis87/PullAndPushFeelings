@@ -42,6 +42,11 @@ section {
     letter-spacing: 0.11em;
   }
 
+.title-container {
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(123,62,252,1) 0%, rgba(166,212,68,1) 100%);
+}  
+
   .title, .subtitle {
     text-align: center;
     /* display: table-cell;
