@@ -16,7 +16,8 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video 
+{
   margin: 0;
   padding: 0;
   border: 0;
@@ -27,8 +28,15 @@ time, mark, audio, video {
 
 /* Postcard styles */
 
-body {
+body 
+{
     font-family: 'Nunito', sans-serif;
+}
+
+.scroll-container 
+{
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
 section {
@@ -40,24 +48,33 @@ section {
     background-repeat: no-repeat;
     font-size: 2em;
     letter-spacing: 0.11em;
+    scroll-snap-align: center;
   }
 
-.title-container {
+.title-container 
+{
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(123,62,252,1) 0%, rgba(166,212,68,1) 100%);
 }  
 
-  .title, .subtitle {
-    text-align: center;
-    /* display: table-cell;
-    vertical-align: middle; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-  }
+.title, .subtitle 
+{
+  text-align: center;
+  /* display: table-cell;
+  vertical-align: middle; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
 
-  /* .purple {
+.p5 
+{
+  position: relative;
+}
+
+
+   /* .purple {
     background-color: #7B4AE3;
   }
 
