@@ -1,6 +1,7 @@
-///////////////////////////// SOFIA ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// SKETCH 1 ///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-// #1
 let sketch1 = function (s) 
 {
     let points = [];
@@ -13,9 +14,11 @@ let sketch1 = function (s)
     s.setup = function() 
     {
         // create canvas
-        let cnv = s.createCanvas(s.windowWidth, s.windowHeight);
+        cnv = s.createCanvas(s.windowWidth, s.windowHeight);
         cnv.position(0, 0);
         cnv.parent("cnv1");
+
+        cnv.mouseClicked(mouseWasClicked);
 
         s.strokeWeight(50);
         s.stroke(255,255,255, 7)
@@ -37,7 +40,7 @@ let sketch1 = function (s)
 
     generatePoints = function()
     {
-        nPoints = s.random(8, 15);
+        nPoints = s.random(10, 16);
 
         pointsX = [];
         points  = [];
@@ -86,7 +89,7 @@ let sketch1 = function (s)
         s.pop();
     }
 
-    s.mouseClicked = function()
+    mouseWasClicked = function()
     {
         generateColor();
         generatePoints();
@@ -100,10 +103,18 @@ let sketch1 = function (s)
 
 new p5(sketch1);
 
-// #3
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// SKETCH 3 ///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 let sketch3 = function (s) {
 
+    // time
+    let delayTime = 1000; // 1 sec
+    let t = 0;
+
+    //img
     let rose;
     let petal_1;
     let petal_2;
@@ -111,7 +122,8 @@ let sketch3 = function (s) {
     let petal_4;
     let petal_5;
     let petal_6;
-    let petals;
+    let petalImgs;
+    let petals =[];
 
     s.preload = function()
     {
@@ -132,21 +144,75 @@ let sketch3 = function (s) {
         cnv.parent("cnv3");
 
         s.imageMode(s.CENTER);
-        // array 
-        petals = [petal_1, petal_2, petal_3, petal_4, petal_5, petal_6];
+        
+        // images and resizing 
+        petalImgs = [petal_1, petal_2, petal_3, petal_4, petal_5, petal_6];
+        for(img of petalImgs)
+            img.resize(s.width*0.03, 0);
 
-        rose.resize(s.width*0.07, 0)
+        rose.resize(s.width*0.1, 0);
     };
 
     s.draw = function()
     {
-        s.background(200);
+        s.background(80, 10, 10);
+        generatePetal();
+        updatePetals();
 
         s.image(rose, s.mouseX, s.mouseY);
         s.noCursor();
-        //s.cursor(rose);
+
     };
 
+    generatePetal = function()
+    {
+        if(s.millis() - t > delayTime && mouseInsideCanvas())
+        {
+            let index = s.int(s.random(0, petalImgs.length));
+            let newPetal = new Petal(s.mouseX+30, s.mouseY, petalImgs[index]);
+            petals.push(newPetal);
+            // update time
+            t = s.millis();
+            delayTime = s.random(300, 1500);
+        }
+    }
+
+    updatePetals = function()
+    {
+        for(petal of petals)
+        {
+            petal.updatePos(s);
+            petal.draw(s);
+        }
+    }
+
+    mouseInsideCanvas = function()
+    {
+        return (s.mouseX >= 0 && s.mouseX <= s.width && s.mouseY >= 0 && s.mouseY <= s.height);
+    }
 }
 
 new p5(sketch3);
+
+
+class Petal 
+{
+    constructor(x, y, img)
+    {
+        this.x = x;
+        this.y = y;
+        this.img = img;       
+    }
+
+    updatePos(s)
+    {
+        if(this.y + this.img.height/2 < s.height)
+            this.y+=2;
+
+    }
+
+    draw(s)
+    {
+        s.image(this.img, this.x, this.y);
+    }
+}
