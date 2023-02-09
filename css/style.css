@@ -55,6 +55,7 @@ section {
 {
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(123,62,252,1) 0%, rgba(166,212,68,1) 100%);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(123,62,252,1) 0%, rgba(255,215,30,1) 100%);
 }  
 
 .title, .subtitle 
