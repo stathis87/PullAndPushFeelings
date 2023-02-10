@@ -99,6 +99,10 @@ let sketch1 = function (s)
 
     s.draw = function()
     { };
+
+    // s.windowResized = function(s) {
+    //     s.resizeCanvas(s.windowWidth, s.windowHeight);
+    // }
 }
 
 new p5(sketch1);
