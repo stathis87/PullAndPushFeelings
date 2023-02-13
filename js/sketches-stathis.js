@@ -38,7 +38,7 @@ let sketch2 = function(s)
         s.fill(255);
         s.textSize(20);
         s.textAlign(s.CENTER);
-        s.text('click again', s.width/2, s.height/2);
+        s.text('double click to create a flower', s.width/2, s.height/2);
         s.pop();
     }
 
